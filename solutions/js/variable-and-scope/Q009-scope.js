@@ -1,6 +1,5 @@
 /**
- * Q - var vs let vs const
- * Difficulty: Easy
+ * var vs let vs const
  */
 
 /* --------------------------------------------------
@@ -14,7 +13,7 @@ if (true) {
 }
 
 console.log(a); // 10
-// console.log(b); // ReferenceError
+console.log(b); // ReferenceError
 // console.log(c); // ReferenceError
 
 /*
@@ -24,7 +23,7 @@ const -> block scoped
 */
 
 /* --------------------------------------------------
-   Hoisting
+   Hoisting: During the creation phase, JavaScript moves variable and function declarations to the top of their scope before executing the code.
 -------------------------------------------------- */
 
 console.log(x); // undefined
@@ -41,7 +40,7 @@ All are hoisted.
 
 var   -> initialized with undefined
 let   -> uninitialized (TDZ)
-const -> uninitialized (TDZ)
+const -> uninitialized (TDZ)    
 */
 
 /* --------------------------------------------------
@@ -72,7 +71,7 @@ const PI = 3.14;
 -------------------------------------------------- */
 
 const user = {
-  name: 'Seema',
+  name: 'John',
 };
 
 user.name = 'John'; // Allowed
@@ -125,7 +124,7 @@ Each iteration gets its own i.
 */
 
 /* --------------------------------------------------
-   Interview Summary
+   Summary
 -------------------------------------------------- */
 
 /*

@@ -3,14 +3,8 @@
   "version": "1.0.0",
   "description": "300-question JavaScript/TypeScript mastery curriculum for senior/staff engineering interviews",
   "private": true,
+  "type": "module",
   "scripts": {
-    "run:js": "node --experimental-vm-modules",
-    "run:ts": "ts-node --esm",
-    "run:q": "ts-node solutions/ts/$Q.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:q": "jest --testPathPattern=$Q",
-    "lint": "eslint . --ext .js,.ts",
     "type-check": "tsc --noEmit",
     "format": "prettier --write ."
   },

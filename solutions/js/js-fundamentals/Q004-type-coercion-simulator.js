@@ -147,15 +147,15 @@ function predictCoercion(a, op, b) {
 
 // ---------------- TESTS ----------------
 
-// console.log(predictCoercion('5', '+', 2));      // "52"
-// console.log(predictCoercion('5', '-', 2));      // 3
-// console.log(predictCoercion('', '==', false));  // true
-// console.log(predictCoercion('  ', '==', 0));    // true
-// console.log(predictCoercion([], '==', false));  // true
-// console.log(predictCoercion([1], '+', 2));      // "12"
-// console.log(predictCoercion([1], '-', 2));      // -1
-// console.log(predictCoercion('10', '<', '2'));   // true
-// console.log(predictCoercion('10', '<', 2));     // false
+console.log(predictCoercion('5', '+', 2));      // "52"
+console.log(predictCoercion('5', '-', 2));      // 3
+console.log(predictCoercion('', '==', false));  // true
+console.log(predictCoercion('  ', '==', 0));    // true
+console.log(predictCoercion([], '==', false));  // true
+console.log(predictCoercion([1], '+', 2));      // "12"
+console.log(predictCoercion([1], '-', 2));      // -1
+console.log(predictCoercion('10', '<', '2'));   // true
+console.log(predictCoercion('10', '<', 2));     // false
 
 // // Symbol.toPrimitive example
 

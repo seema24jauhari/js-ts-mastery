@@ -1,4 +1,5 @@
 /**
+ * Coercion = Automatic type conversion by JavaScript from one data type to another.
  * Equality Corection
  */
 const values = [0, '0', false, null, undefined, NaN, '', '  ', []];
