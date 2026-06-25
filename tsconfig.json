@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    /* Language & Environment */
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "CommonJS",
+
+    /* Strictness — all strict flags ON (matches Q205) */
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+
+    /* Extra checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": false,
+
+    /* Module resolution */
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    /* Emit */
+    "outDir": "./dist",
+    "rootDir": "./solutions",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": false,
+
+    /* Interop with JS files */
+    "allowJs": true,
+    "checkJs": false,
+
+    /* Path aliases (optional, extend as needed) */
+    "baseUrl": ".",
+    "paths": {
+      "@utils/*": ["solutions/utils/*"]
+    }
+  },
+  "include": ["solutions/**/*", "tests/**/*"],
+  "exclude": ["node_modules", "dist", "curriculum"]
+}

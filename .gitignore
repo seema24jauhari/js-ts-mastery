@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+*.js.map
+*.d.ts
+*.d.ts.map
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

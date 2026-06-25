@@ -1,0 +1,32 @@
+{
+  "name": "js-ts-mastery",
+  "version": "1.0.0",
+  "description": "300-question JavaScript/TypeScript mastery curriculum for senior/staff engineering interviews",
+  "private": true,
+  "scripts": {
+    "run:js": "node --experimental-vm-modules",
+    "run:ts": "ts-node --esm",
+    "run:q": "ts-node solutions/ts/$Q.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:q": "jest --testPathPattern=$Q",
+    "lint": "eslint . --ext .js,.ts",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.2",
+    "ts-jest": "^29.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

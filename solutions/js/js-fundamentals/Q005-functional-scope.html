@@ -1,0 +1,52 @@
+
+<!--JS Functional scope-->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Heading</h1>
+
+<p>My first paragraph.</p>
+<button id="btn0">Button btn0</button>
+
+<button id="btn1">Button btn1</button>
+
+<button id="btn2">Button btn2</button>
+
+
+<button id="btn3">Button btn3</button>
+
+
+<button id="btn4">Button btn4</button>
+
+</body>
+<script>
+// function scope issue
+for (var i = 0; i < 5; i++) {
+    document.getElementById('btn' + i).addEventListener('click', function() {
+      console.log(i);
+    });
+}
+
+// fix1: 
+for (let i = 0; i < 5; i++) {
+  (function(index){
+    document.getElementById('btn' + index).addEventListener('click', function() {
+      console.log(index);
+    });
+  })(i)
+}
+
+// fix2: 
+for (let i = 0; i < 5; i++) {
+    document.getElementById('btn' + i).addEventListener('click', function() {
+      console.log(i);
+    });
+}
+</script>
+</html>
+
+
+
+
