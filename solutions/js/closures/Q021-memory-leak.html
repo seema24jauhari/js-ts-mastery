@@ -1,0 +1,87 @@
+<!--
+A closure is a function that remembers and can access variables from its outer (lexical) scope even after the outer function has finished executing.
+
+This is useful, but it can also lead to memory leaks if the closure unintentionally keeps large objects alive.
+--->
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Heading</h1>
+
+<p>My first paragraph.</p>
+<button id="btn">Button btn</button>
+
+
+<script>
+//issue
+function setup() {
+    // Large object (~10 MB)
+    const largeData = new Array(1_000_000).fill("JavaScript");
+
+    const button = document.getElementById("btn");
+
+    button.addEventListener("click", function () {
+        console.log(largeData.length);
+    });
+}
+
+setup();
+
+
+//fix
+function setupFun() {
+    const largeData = new Array(1_000_000).fill("JavaScript");
+
+    const button = document.getElementById("btn");
+
+    function handleClick() {
+        console.log(largeData.length);
+    }
+
+    button.addEventListener("click", handleClick);
+
+    // Cleanup
+    return () => {
+        console.log("removeEventListener");
+        button.removeEventListener("click", handleClick);
+    };
+}
+
+const cleanup = setupFun();
+
+// Later
+cleanup();
+
+
+// issue
+function startPolling() {
+    const hugeCache = new Array(1_000_000).fill("data");
+
+    setInterval(() => {
+        console.log(hugeCache.length);
+    }, 1000);
+} 
+
+
+// fix
+function startPollingFunc() {
+    const hugeCache = new Array(1_000_000).fill("data");
+
+    const id = setInterval(() => {
+        console.log(hugeCache.length);
+    }, 1000);
+
+    return () => clearInterval(id);
+}
+
+const stop = startPollingFunc();
+
+// Later
+stop();
+</script>
+</body>
+</html>

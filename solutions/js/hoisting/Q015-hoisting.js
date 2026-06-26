@@ -1,3 +1,6 @@
+/**
+ * Hoisting: During the Memory Creation Phase, JavaScript registers declarations before executing the code.
+ */
 console.log(a);
 //undefined
 // console.log(b);
