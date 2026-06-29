@@ -46,9 +46,13 @@ npx ts-node solutions/ts/Q197-ts-basics.ts
 | Range     | Topic                    | Status      |
 |-----------|--------------------------|-------------|
 | Q001–Q008 | JavaScript Fundamentals  | ✅ Done     |
-| Q009–Q014 | Variables and Scope      | ✅ Done |
-| Q015–Q019 | Hoisting                 | 🔄 In progress |
-| Q020–Q026 | Closures                 | ⬜ Upcoming |
+| Q009–Q014 | Variables and Scope      | ✅ Done     |
+| Q015–Q019 | Hoisting                 | ✅ Done     |
+| Q020–Q026 | Closures                 | ✅ Done     |
+| Q027–Q033 | Prototype & Inheritance  | 🔄 In progress  |
+| Q034–Q040 | Objects                  | ⬜ Upcoming !
+| Q041–Q048 | Arrays                   | 
+
 
 
 ## Quick Reference
