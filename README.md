@@ -25,7 +25,7 @@ nvm install 20 && nvm use 20
 ## Setup
 
 ```bash
-git clone https://github.com/seema24jauhari/js-ts-mastery.git
+git clone https://github.com/John24jauhari/js-ts-mastery.git
 cd js-ts-mastery
 npm install
 ```
@@ -49,9 +49,9 @@ npx ts-node solutions/ts/Q197-ts-basics.ts
 | Q009–Q014 | Variables and Scope      | ✅ Done     |
 | Q015–Q019 | Hoisting                 | ✅ Done     |
 | Q020–Q026 | Closures                 | ✅ Done     |
-| Q027–Q033 | Prototype & Inheritance  | 🔄 In progress  |
-| Q034–Q040 | Objects                  | ⬜ Upcoming !
-| Q041–Q048 | Arrays                   | 
+| Q027–Q033 | Prototype & Inheritance  | ✅ Done        |
+| Q034–Q040 | Objects                  | 🔄 In progress !
+| Q041–Q048 | Arrays                   | ⬜ Upcoming
 
 
 

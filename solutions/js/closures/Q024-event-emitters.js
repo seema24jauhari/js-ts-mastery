@@ -67,7 +67,7 @@ function greet(name) {
 
 emitter.on("welcome", greet);
 
-emitter.emit("welcome", "Seema");
+emitter.emit("welcome", "John");
 
 emitter.off("welcome", greet);
 
@@ -81,5 +81,5 @@ emitter1.once("login", user => {
     console.log("Welcome", user);
 });
 
-emitter1.emit("login", "Seema");
+emitter1.emit("login", "John");
 emitter1.emit("login", "John");
