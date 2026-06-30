@@ -73,7 +73,7 @@ Syntax
 */
 
 const person = {
-    name: "Seema"
+    name: "John"
 };
 
 const human = {

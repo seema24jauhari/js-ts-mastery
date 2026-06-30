@@ -133,7 +133,7 @@ class Player extends mix(
 
 }
 
-const p = new Player("Seema");
+const p = new Player("John");
 
 console.log(p.name);
 

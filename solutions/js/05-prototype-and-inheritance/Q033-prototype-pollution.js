@@ -332,7 +332,7 @@ _.merge() is a utility from the Lodash library that recursively merges objects, 
 const _ = require("lodash");
 
 const obj1 = {
-  name: "Seema",
+  name: "John",
   address: {
     city: "Delhi"
   }
@@ -352,7 +352,7 @@ OUTPUT:
 
 
 {
-  name: "Seema",
+  name: "John",
   address: {
     city: "Delhi",
     pincode: 110001
