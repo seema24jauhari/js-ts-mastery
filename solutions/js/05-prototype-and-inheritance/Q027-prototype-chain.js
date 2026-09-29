@@ -3,6 +3,8 @@
 Prototype Chain
 =========================================================
 
+A prototype is an object from which other JavaScript objects inherit properties and methods.
+
 Definition:
 The prototype chain is the sequence of prototype objects
 JavaScript searches when a property or method is not found
@@ -209,6 +211,7 @@ have NO prototype.
 
 const obj = Object.create(null);
 
+//Prefer Object.getPrototypeOf(circle) over circle.__proto__ in modern JavaScript.
 console.log(Object.getPrototypeOf(obj)); // null
 
 // obj.toString(); // TypeError

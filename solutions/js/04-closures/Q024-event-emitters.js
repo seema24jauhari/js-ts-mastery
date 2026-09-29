@@ -1,14 +1,3 @@
-/*
-| Feature                      | Map | WeakMap |
-| ---------------------------- | --- | ------- |
-| String keys                  | ✅   | ❌       |
-| Number keys                  | ✅   | ❌       |
-| Object keys                  | ✅   | ✅       |
-| Automatic garbage collection | ❌   | ✅       |
-| Iterable                     | ✅   | ❌       |
-| `.size`                      | ✅   | ❌       |
-*/
-
 function createEventEmitter() {
     const events = new Map();
 

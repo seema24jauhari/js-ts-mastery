@@ -380,4 +380,106 @@ Then:
 const user = {};
 console.log(user.isAdmin); // true 😱
 
+
+
+#### Fix 1 — Object.create(null)
+
+js
+const obj = Object.create(null);
+
+This creates an object with no prototype at all — not even the usual Object.prototype.
+
+js
+const safe = Object.create(null);
+safe.__proto__ = { isAdmin: true };   // does NOTHING special now
+console.log(safe.__proto__);           // { isAdmin: true } — just a normal property!
+console.log(Object.prototype.isAdmin); // undefined — untouched
+
+Why it works: __proto__ is only a magic setter because it's inherited from Object.prototype's getter/setter. Since Object.create(null) has no Object.prototype in its chain, __proto__ is just a plain string key like any other — completely inert.
+
+js
+{}.__proto__              // -> Object.prototype (magic)
+Object.create(null).__proto__   // -> undefined, just a missing property (no magic)
+
+### Fix 2 — Use Map instead of a plain object
+
+js
+const map = new Map();
+map.set('__proto__', { isAdmin: true });
+map.set(userSuppliedKey, userSuppliedValue);
+
+Why it works: Map stores keys/values in an internal data structure, completely separate from the object property system. Setting a key called "__proto__" on a Map is just a normal key-value pair — it has zero connection to the object's actual prototype.
+
+console.log(map.get('__proto__'));      // { isAdmin: true } — just data
+console.log(Object.prototype.isAdmin);  // undefined — untouched
+
+js
+Map also sidesteps other related gotchas (constructor, hasOwnProperty as keys) since it doesn't use the prototype-based property lookup system at all — any string is just a key.
+
+
+Real scenario: **counting word frequency from user-submitted text** — the keys come straight from user input, so they could be literally anything, including `__proto__`.
+
+**The vulnerable version:**
+
+```js
+function wordFrequency(text) {
+  const counts = {};
+  const words = text.toLowerCase().split(/\s+/);
+  for (const word of words) {
+    counts[word] = (counts[word] || 0) + 1;
+  }
+  return counts;
+}
+
+wordFrequency("the cat sat on the __proto__ mat");
+```
+
+```js
+counts['__proto__']        // doesn't create a key — it READS the prototype object
+counts['__proto__'] = ...  // this WRITES to the prototype, not a new key!
+```
+
+That `(counts[word] || 0) + 1` line, when `word` is `"__proto__"`, ends up doing `counts.__proto__ = 1` — corrupting the prototype chain instead of storing a count. Depending on what's written, this can pollute every object app-wide.
+
+**Fix 1 — `Object.create(null)` (best when you still want `obj[key]` syntax):**
+
+```js
+function wordFrequency(text) {
+  const counts = Object.create(null);   // no prototype to pollute
+  const words = text.toLowerCase().split(/\s+/);
+  for (const word of words) {
+    counts[word] = (counts[word] || 0) + 1;
+  }
+  return counts;
+}
+
+wordFrequency("the cat sat on the __proto__ mat");
+// { the: 2, cat: 1, sat: 1, on: 1, __proto__: 1, mat: 1 }  -- safe, just a normal entry
+```
+
+**Fix 2 — `Map` (better when you'll also need size, iteration order, or non-string keys):**
+
+```js
+function wordFrequency(text) {
+  const counts = new Map();
+  const words = text.toLowerCase().split(/\s+/);
+  for (const word of words) {
+    counts.set(word, (counts.get(word) || 0) + 1);
+  }
+  return counts;
+}
+
+const result = wordFrequency("the cat sat on the __proto__ mat");
+result.get('__proto__');   // 1 — just a normal entry, totally safe
+result.size;                 // 6 — Map gives you this for free
+```
+
+---
+
+**Other real cases where this bites teams in production:**
+- **`JSON.parse`-ing request bodies and merging into config/settings objects** (npm's `lodash.merge` had a real CVE from exactly this)
+- **Caching API responses keyed by user-supplied IDs** (`cache[userId] = data`)
+- **Building a lookup table from CSV/form uploads** where column headers become keys
+
+**Rule of thumb:** the moment an object's *keys* (not just values) come from outside your code — user input, uploaded files, query params, request bodies — use `Map` or `Object.create(null)` instead of `{}`.
 */

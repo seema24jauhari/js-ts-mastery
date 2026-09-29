@@ -1,8 +1,16 @@
 /**
  * Equality Test
+ * 
+ * !Important
+ *  Object.is was added to fix two specific bugs in === that had no clean workaround before — the spec needed a way to express "are these truly the same value", which === doesn't actually give you despite looking like it should.
+ * 
+ *   Object.is(NaN, NaN)   // true  (=== gives false)
+ *   Object.is(0, -0)      // false (=== gives true)
+ *  
  */
 
 function deepEqual(a, b, visited = new WeakMap()) {
+
     // Same reference or primitive equality
     if (Object.is(a, b)) return true;
 
@@ -35,6 +43,11 @@ function deepEqual(a, b, visited = new WeakMap()) {
 
     // RegExp
     if (a instanceof RegExp && b instanceof RegExp) {
+        /*
+            const regex = /hello\d+/gi;
+            console.log(regex.source);
+            // hello\d+
+        */
         return a.source === b.source && a.flags === b.flags;
     }
 
@@ -95,6 +108,7 @@ function deepEqual(a, b, visited = new WeakMap()) {
         return true;
     }
 
+
     // Plain objects
     const keysA = Object.keys(a);
     const keysB = Object.keys(b);
@@ -108,6 +122,7 @@ function deepEqual(a, b, visited = new WeakMap()) {
         return false;
         }
     }
+
 
     return true;
 }

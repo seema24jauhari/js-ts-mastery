@@ -1,4 +1,6 @@
 /*
+IIFE = Immediately Invoked Function Expression
+
 Module Pattern is a JavaScript design pattern used to:
 
 Hide private data/functions

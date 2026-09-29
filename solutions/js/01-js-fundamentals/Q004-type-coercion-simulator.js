@@ -171,3 +171,46 @@ console.log(predictCoercion(obj, '+', 1)); // "custom1"
 
 // const d = new Date('2026-01-01');
 // console.log(predictCoercion(d, '+', '')); // date string
+
+
+// !!!!Important!!!!
+
+/*
+Because **JavaScript type coercion** happens automatically.
+
+For `[1] + 2`:
+
+1. `[1]` is an **object (array)**.
+2. `+` can mean **string concatenation**, so JS converts `[1]` to its primitive value.
+3. `[1].toString()` → `"1"`
+4. `"1" + 2` → **`"12"`**
+
+For `-`, there is no string operation, so JS converts both sides to **numbers**.
+
+JavaScript follows the **operator's coercion rules**.
+
+For `<`:
+
+* **Both operands are strings** → **no conversion to number** → string comparison.
+
+  ```js
+  '10' < '2' // true
+  ```
+
+* **One operand is not a string** → JS converts both to **numbers**.
+
+  ```js
+  '10' < 2 // 10 < 2 → false
+  ```
+
+### When does conversion happen?
+
+It depends on the operator:
+* `+` → if either side becomes a string → **string concatenation**
+* `-`, `*`, `/` → **convert to numbers**
+* `<`, `>`, `<=`, `>=` → **number comparison**, unless **both are strings**
+* `==` → **type coercion**
+* `===` → **no type coercion**
+
+
+*/

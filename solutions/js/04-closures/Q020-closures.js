@@ -1,3 +1,5 @@
+//Closure: A function that remembers and can access variables from its outer scope even after the outer function has finished executing.
+
 function makeAdder(x) {
     return function (y) {
         return x + y;

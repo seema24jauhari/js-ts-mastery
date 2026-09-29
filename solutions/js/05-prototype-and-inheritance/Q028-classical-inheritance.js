@@ -65,8 +65,10 @@ Circle.prototype
 ↓
 
 Shape.prototype
+
 */
 
+// 1. Inherit Shape's methods
 Circle.prototype = Object.create(Shape.prototype);
 
 
@@ -101,7 +103,8 @@ Output: shape
 Expected: circle
 */
 
-Circle.prototype.constructor = Circle;
+// 2. Restore the constructor reference
+// Circle.prototype.constructor = Circle;
 
 
 /*
@@ -336,4 +339,71 @@ const p1 = new Person("John", 30);
 const p2 = new Person("Tim", 28);
 const p3 = new Person("Amit", 35);
 No duplication.
+
+
+The main difference is:
+
+* `Circle.prototype` is used by objects created with `new Circle()`.
+Circle.prototype — a property that lives on the constructor function. It's the "blueprint" object where you put methods you want every instance to share.
+
+* `circle.__proto__` is the prototype of the actual `circle` object.
+circle.__proto__ — a property that lives on the instance, and points to whatever object it inherits from. When you write new Circle(5), JS sets circle.__proto__ = Circle.prototype internally.
+### Example
+
+JavaScript
+
+```
+function Circle(radius) {
+  this.radius = radius;
+}
+
+const circle = new Circle(5);
+
+console.log(circle.__proto__ === Circle.prototype);
+// true
+```
+
+## Prototype chain
+
+circle
+
+radius: 5
+
+circle.proto
+
+Circle.prototype
+
+Object.prototype
+
+null
+
+### What about inheritance?
+
+JavaScript
+
+```
+Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle;
+```
+
+Now the chain is:
+
+```
+circle
+  ↓ __proto__
+Circle.prototype
+  ↓ __proto__
+Shape.prototype
+  ↓ __proto__
+Object.prototype
+  ↓
+null
+```
+
+Remember: `Circle.prototype` belongs to the constructor function, while `circle.__proto__` belongs to the instance.
+
+Prefer `Object.getPrototypeOf(circle)` over `circle.__proto__` in modern JavaScript.
+
+
 */
+

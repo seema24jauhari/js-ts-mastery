@@ -24,6 +24,7 @@ obj2.name = 'John';
 console.log(obj1.name); // John
 console.log(obj2.name); // John
 
+// Because objects and arrays are compared by reference, not by their contents.
 console.log({} === {}); // false
 console.log([] === []); // false
 
@@ -95,6 +96,7 @@ const obj = {
   date: new Date(),
 };
 
+// ======================Important=========================
 const copy = JSON.parse(JSON.stringify(obj)); //used for simple objects deep copy
 
 /* 
